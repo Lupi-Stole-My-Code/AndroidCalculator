@@ -79,27 +79,22 @@ namespace AndroidCalculator
                         result = A + B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: +";
                         return true;
-                        break;
                     case (int)Operation.Sub:
                         result = A - B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: -";
                         return true;
-                        break;
                     case (int)Operation.Multi:
                         result = A * B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: *";
                         return true;
-                        break;
                     case (int)Operation.Div:
                         result = A / B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: /";
                         return true;
-                        break;
                     default:
                         result = B;
-                        comment = "Another operation"; //out stuff aka garbage
+                        comment = "Another operation";
                         return true;
-                        break;
                 }
             }
             else

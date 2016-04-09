@@ -70,7 +70,7 @@ namespace AndroidCalculator
             btnCalc = FindViewById<Button>(Resource.Id.buttonEquals);
             btn0 = FindViewById<Button>(Resource.Id.button0);
             btnDot = FindViewById<Button>(Resource.Id.buttonDecimalPoint);
-            //Landscape
+            //Landscape only
             btnSqrt = FindViewById<Button>(Resource.Id.buttonSquareRoot);
             btnSquared = FindViewById<Button>(Resource.Id.buttonSquared);
             btnInvert = FindViewById<Button>(Resource.Id.buttonInvert);
@@ -131,7 +131,6 @@ namespace AndroidCalculator
             double val = Double.Parse(btn.Text);
             if (display.Text == "0") display.Text = "";
             display.Text += btn.Text;
-            //Calc.setData((int)val);
         }
 
         private void Operations_Click(object sender, EventArgs e)
@@ -163,8 +162,16 @@ namespace AndroidCalculator
                     display.Text = Calc.ExecSquareRoot(double.Parse(display.Text)).ToString();
                     break;
                 case ".":
-                    display.Text += ",";
-                    break;
+                    try
+                    {
+                        string a = double.Parse(display.Text + ",0").ToString();
+                        display.Text += ",";
+                    }
+                    catch
+                    {
+                        // do nothing
+                    }
+                    return;
                 case "+/-":
                     display.Text = (double.Parse(display.Text) * -1.0).ToString();
                     break;
@@ -197,9 +204,7 @@ namespace AndroidCalculator
                     display.Text = Calc.Tangens(double.Parse(display.Text)).ToString();
                     break;
             }
-            
         }
-
 
     }
 }
