@@ -166,7 +166,7 @@ namespace AndroidCalculator
                     display.Text += ",";
                     break;
                 case "+/-":
-                    display.Text = "-" + display.Text;
+                    display.Text = (double.Parse(display.Text) * -1.0).ToString();
                     break;
                 case "C":
                     display.Text = "0";

@@ -1,13 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 namespace AndroidCalculator
 {
     public static class Calc
     {
         static double Memory = 0.0;
-        static bool MemoryNull;
         static bool isA = false;
         static double A = 0.0;
         static bool isOperation = false;
@@ -23,27 +19,16 @@ namespace AndroidCalculator
 
         public static void MemoryClear()
         {
-            MemoryNull = true;
             Memory = 0.0;
         }
 
         public static void MemoryAddTo(double num)
         {
-            if(!MemoryNull)
-            {
-                MemoryNull = true;
-                Memory = 0.0;
-            }
             Memory += num;
         }
 
         public static void MemorySubTo(double num)
         {
-            if (!MemoryNull)
-            {
-                MemoryNull = true;
-                Memory = 0.0;
-            }
             Memory -= num;
         }
 
@@ -110,6 +95,11 @@ namespace AndroidCalculator
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: /";
                         return true;
                         break;
+                    default:
+                        result = B;
+                        comment = "Another operation"; //out stuff aka garbage
+                        return true;
+                        break;
                 }
             }
             else
@@ -118,10 +108,6 @@ namespace AndroidCalculator
                 comment = "Debug: A=" + A.ToString() + " ; B=" + B.ToString() + " ; " + "OP=" + operation.ToString();
                 return false;
             }
-            comment = "IMPOSSIBLE";
-            result = 666.66;
-            return false;
-
         }
 
         public static double ExecSquareRoot(double A)
