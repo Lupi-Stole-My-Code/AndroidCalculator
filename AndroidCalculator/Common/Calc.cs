@@ -99,7 +99,7 @@ namespace AndroidCalculator
             }
             else
             {
-                result = -1.0;
+                result = B;
                 comment = "Debug: A=" + A.ToString() + " ; B=" + B.ToString() + " ; " + "OP=" + operation.ToString();
                 return false;
             }
