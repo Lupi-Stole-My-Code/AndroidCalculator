@@ -5,6 +5,7 @@ namespace AndroidCalculator
     {
         static double Memory = 0.0;
         static bool isA = false;
+        public static double ValueA { get { return A; } }
         static double A = 0.0;
         static bool isOperation = false;
         static int operation;

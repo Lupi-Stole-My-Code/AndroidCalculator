@@ -113,6 +113,10 @@ namespace AndroidCalculator
                 btnCos.Click += Operations_Click;
                 btnTan.Click += Operations_Click;
             }
+            if (bundle != null)
+            {
+                display.Text = bundle.GetString("display_text", "0");
+            }
         }
 
         private void Equals_Click(object sender, EventArgs e)
@@ -220,6 +224,12 @@ namespace AndroidCalculator
             }
         }
 
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutString("display_text", display.Text);
+
+            base.OnSaveInstanceState(outState);
+        }
     }
 }
 
