@@ -150,11 +150,6 @@ namespace AndroidCalculator
         {
             Button btn = (sender as Button);
             string op = btn.Text;
-            if (!Calc.validateDisplay(display.Text) && op != "C")
-            {
-                display.Text = "Invalid Data";
-                return;
-            }
             switch (op)
             {
                 case "+":

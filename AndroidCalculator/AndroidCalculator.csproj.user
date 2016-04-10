@@ -2,5 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidDesignerPreferredDevice>Custom Device %28sw1440dp, w1440dp, h2560dp, normal, 1440x2560, notlong, notround, hdpi, finger, keyssoft, nokeys, navhidden, nonav%29</AndroidDesignerPreferredDevice>
+    <SelectedDevice>myAVD</SelectedDevice>
   </PropertyGroup>
 </Project>

@@ -6,14 +6,18 @@ namespace AndroidCalculator
         static double Memory = 0.0;
         static bool isA = false;
         public static double ValueA { get { return A; } }
+        public static bool ValueIsA { get { return isA; } }
         static double A = 0.0;
         static bool isOperation = false;
         static int operation;
-        public enum Operation {Add = 1, Sub = 2, Multi = 3, Div = 4, Sqrt = 5, Sqare = 6};
+        public enum Operation {Add = 1, Sub = 2, Multi = 3, Div = 4};
+        static double lastB;
+        static bool isLastB = false;
 
         public static void reset()
         {
             isA = false;
+            isLastB = false;
             isOperation = false;
             A = 0.0;
         }
@@ -43,6 +47,7 @@ namespace AndroidCalculator
             A = num;
             isA = true;
             operation = (int)Operation.Add;
+            isLastB = false;
             isOperation = true;
         }
 
@@ -51,6 +56,7 @@ namespace AndroidCalculator
             A = num;
             isA = true;
             operation = (int)Operation.Sub;
+            isLastB = false;
             isOperation = true;
         }
 
@@ -59,6 +65,7 @@ namespace AndroidCalculator
             A = num;
             isA = true;
             operation = (int)Operation.Multi;
+            isLastB = false;
             isOperation = true;
         }
 
@@ -67,6 +74,7 @@ namespace AndroidCalculator
             A = num;
             isA = true;
             operation = (int)Operation.Div;
+            isLastB = false;
             isOperation = true;
         }
 
@@ -74,23 +82,51 @@ namespace AndroidCalculator
         {
             if(isA && isOperation)
             {
+                if(isLastB)
+                {
+                    B = lastB;
+                }
                 switch(operation)
                 {
                     case (int)Operation.Add:
                         result = A + B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: +";
+                        if (!isLastB)
+                        {
+                            lastB = B;
+                            isLastB = true;
+                        }
+                        A = result;
                         return true;
                     case (int)Operation.Sub:
                         result = A - B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: -";
+                        A = result;
+                        if (!isLastB)
+                        {
+                            lastB = B;
+                            isLastB = true;
+                        }
                         return true;
                     case (int)Operation.Multi:
                         result = A * B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: *";
+                        A = result;
+                        if (!isLastB)
+                        {
+                            lastB = B;
+                            isLastB = true;
+                        }
                         return true;
                     case (int)Operation.Div:
                         result = A / B;
                         comment = "OK : A=" + A.ToString() + " ; B=" + B.ToString() + " op: /";
+                        A = result;
+                        if (!isLastB)
+                        {
+                            lastB = B;
+                            isLastB = true;
+                        }
                         return true;
                     default:
                         result = B;
@@ -146,7 +182,7 @@ namespace AndroidCalculator
             try
             {
                 double d = double.Parse(displayText);
-                if(double.IsNaN(d) || double.IsInfinity(d))
+                if(double.IsNaN(d))
                 {
                     return false;
                 }
