@@ -139,5 +139,22 @@ namespace AndroidCalculator
         {
             return (Math.PI / 180.0) * a;
         }
+
+        public static bool validateDisplay(string displayText)
+        {
+            try
+            {
+                double d = double.Parse(displayText);
+                if(double.IsNaN(d) || double.IsInfinity(d))
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

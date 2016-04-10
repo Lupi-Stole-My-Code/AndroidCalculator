@@ -117,6 +117,11 @@ namespace AndroidCalculator
 
         private void Equals_Click(object sender, EventArgs e)
         {
+            if (!Calc.validateDisplay(display.Text))
+            {
+                display.Text = "Invalid Data";
+                return;
+            }
             Button btn = (sender as Button);
             string comment = "";
             double result;
@@ -128,15 +133,24 @@ namespace AndroidCalculator
         private void Values_Click(object sender, EventArgs e)
         {
             Button btn = (sender as Button);
-            double val = Double.Parse(btn.Text);
             if (display.Text == "0") display.Text = "";
             display.Text += btn.Text;
+            if (!Calc.validateDisplay(display.Text))
+            {
+                display.Text = "Invalid Data";
+                return;
+            }
         }
 
         private void Operations_Click(object sender, EventArgs e)
         {
             Button btn = (sender as Button);
             string op = btn.Text;
+            if (!Calc.validateDisplay(display.Text) && op != "C")
+            {
+                display.Text = "Invalid Data";
+                return;
+            }
             switch (op)
             {
                 case "+":
